@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="按钮1" class="btn">
+    <input type="button" value="按钮2" class="btn">
+    <input type="button" value="按钮3" class="btn">
+    <script>
+        var btns = document.getElementsByClassName('btn');
+        for(let i = 0;i <btns.length;i++){
+            btns[i].onclick = function(){
+                console.log(i);
+            }
+        }
+        // let会形成一个作用域，在for里面都是一个作用域
+    </script>
+</body>
+</html>
