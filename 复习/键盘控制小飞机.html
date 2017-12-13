@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #fly {
+            width: 85px;
+            height: 81px;
+            background:url(fly.gif);
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="fly"></div>
+</body>
+<script>
+// 需要整个文档添加键盘按下事件，通过事件对象，获取当前按下的是哪个键，然后按下哪个键就可以控制小飞机
+// 、、
+// 1，获取元素
+var oFly = document.getElementById('fly');
+// 2,给document添加键盘按下事件
+document.onkeydown = function(e){
+    // 做一个事件处理的兼容处理
+    e = window.event || e;
+    // 获取键盘编码，
+
+
+</script>
+</html>

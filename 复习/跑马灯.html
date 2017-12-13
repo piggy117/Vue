@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{info}}</p>
+        <input type="button" value="开启" v-on:click="go">
+        <input type="button" value="停止" v-on:click="stop">
+    </div>
+</body>
+<script src="node_modules/vue/dist/vue.min.js"></script>
+<script>
+// 创建Vue实例，得到ViewModule
+var vm = new Vue ({
+    el:'#app',
+    data:{
+        info:'猥琐发育，别浪~~！',
+        intervalId:null
+    },
+    methods:{
+        go(){
+            // 如果当前有定时器在运行，则直接return
+            if(this.intervalId != null){
+                return;
+            }
+            // 开始定时器
+            this.intervalId = setInterval(() => {
+                this.info = this.info.substring(1) + this.info.substring(0,1);
+            },500);
+        },
+        stop(){
+            clearInterval(this.intervalId);
+        }
+    }
+});
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        #box {
+            width: 150px;
+            height: 300px;
+            background: red;
+            position:fixed;
+            left: -150px;
+            top: 200px;
+        }
+        #box #sider {
+            width: 30px;
+            height: 60px;
+            text-align: center;
+            line-height: 20px;
+            background-color: black;
+            position: absolute;
+            right:-30px;
+            top: 120px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div id="sider">
+        分享到
+        </div>
+    </div>
+    <script>
+    var oBox = document.getElementById('box')
+    var sider = document.getElementById('sider')
+    // 事件冒泡，点击“分享到”，触发冒泡事件，，所以不需给sider事件，直接给box事件就可以
+    oBox.onmouseover=function(){
+        this.style.left = "0";
+    }
+    oBox.onmouseout = function(e) {
+        e = e || event;
+        console.log(e)
+        console.log(e.stopPropagation())
+        this.style.left = "-150px";
+    }
+    </script>
+</body>
+</html>

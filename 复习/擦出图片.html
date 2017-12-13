@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .box{
+        background:url(images/element.jpg) no-repeat;
+        opacity:0; 
+        position:absolute;
+        width: 93.8px;
+        height: 58px;
+        transition:0.5s;
+    }
+    </style>
+</head>
+
+<body>
+        <!-- 动态生成100个div -->
+
+
+</body>
+<script>
+var str = ''
+for(var i = 0;i < 100;i++){
+    var l = i % 10 * 93.8
+    var t = parseInt(i / 10) * 58
+    str += '<div class="box" style="left:'+l+'px;top:'+t+'px;background-position:'+ -l+'px '+ -t+'px"></div>'
+}
+document.body.innerHTML = str;
+var oDiv = document.getElementsByTagName('div')
+for(var i = 0; i < oDiv.length;i++){
+    oDiv[i].onmousemove=function(){
+        this.style.opacity = '1'
+    }
+}
+</script>
+</html>
