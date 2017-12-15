@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    
+    </style>
+<script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="person">
+        ID: <input type="text" v-model="id">
+        Name: <input type="text" v-model="name">
+        <input type="button" value="添加" @click="add">
+        <ul>
+            <li v-for="(item,index) in someone" :key="item.id">
+            <input type="checkbox" >{{item.id}}====={{item.name}}            
+            </li>
+        </ul>
+    </div>
+    <script>
+    var vm = new Vue({
+        el:"#person",
+        data:{
+            id:'',
+            name:'',
+            someone:[
+                {id:1,name:'张三'},
+                {id:2,name:'李四'},
+                {id:3,name:'王二麻子'},
+                {id:4,name:'赵六'}
+            ],
+        },
+        methods:{
+                add(){
+                    var one1 = {id:this.id,name:this.name};
+                    this.someone.unshift(one1)
+                }
+            }
+    })
+    </script>
+</body>
+</html>

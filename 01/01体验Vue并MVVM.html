@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 导入Vue -->
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- {{}} 这种语法叫做插值表达式 ，在插值表达式中，可以写任何合法的js表达式-->
+        <p>{{message}}</p>
+        <!-- 这里我们使用的v-text的属性语法：指令，
+        在Vue中，都有的指令都是属性，Vue指令都是以v-开头 -->
+
+         <!-- 双大括号语法，{{}} 只能在元素标签内筒区域，不能再标签里面-->
+     <h3 v-text="message"></h3>     
+    </div>
+    <hr>
+   
+    <script>
+    // Vue这个构造函数
+    // 这里new Vue 得到的VM实例。及时MVVM中的核心VM，它提供了双向数据绑定的能力
+    const vm = new Vue ({
+        // 制定当前要创建的这个VM实例，要控制页面上那个区域；此处el属性，指定的元素，就是我们的MVVM中的V视图层
+        el:"#app",
+        // data 是一个对象，表示我们要渲染的一些数据
+        // 此处的data属性，就是MVVM中M视图层
+        data:{
+            message:'这是使用Vue渲染的数据，我们并没有操作DOM元素'
+        }
+    })
+
+    </script>
+</body>
+</html>

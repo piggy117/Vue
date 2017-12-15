@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="js/vue.min.js"></script>
+    <script src="node_modules/moment/min/moment.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <div>
+
+            <label>Id:</label>
+            <input type="text" v-model="id">
+            <label>Name:</label>
+            <input type="text" v-model="name">
+            <input type="button" value="添加" class="btn btn-primary" @click="add"> &nbsp;&nbsp;&nbsp;&nbsp; 按照品牌名称检索:
+            <input type="text" v-model="keywords" @change="searchByName">
+
+        </div>
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>CTime</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in searchByName()" :key="item.id">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <!--  在调用过滤器的时候, 需要  使用 | 来调用, | 叫做 管道符  -->
+                    <td>{{ item.ctime | formatDate | addStr('----', '====')}}</td>
+                    <td>
+                        <a href="http://www.baidu.com" @click.prevent="del(item.id)">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+    // 自定义一个全局的过滤器
+    // vue.filter('过滤器将来被调用的时候的名称‘，过滤器的处理函数)
+    // 注意：过滤器的处理函数中，第一个参数，作用已经被规定死了，永远是管道符前面的值
+    Vue.filter('formatDate',function(data){
+        // console.log('过滤器被调用了')
+        // return data + '~~~'
+        return moment(data).formate('YYYY-MM-DD HH:mm:ss')
+    })
+    // 如果要为过滤器传递参数，则传递的参数只能在第二个形参的位置开始接收
+    Vue.filter('assStr',function(data,str,str2){
+        return data + str + str2
+    })
+
+    // 创建Vue实例，得到ViewModle
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            id:'',
+            name:'',
+            keywords:'',
+            list:[
+            { id: 1, name: '奔驰', ctime: new Date() },
+          { id: 2, name: '宝马', ctime: new Date() },
+          { id: 3, name: '千里马', ctime: new Date() },
+          { id: 4, name: '奔奔', ctime: new Date(), }
+            ]
+       },
+       methods:{
+           add(){
+               this.list.push({id:this.id,name:this.name,ctime:new Date() })
+               this.id = this.name = ''
+           },
+           del(id){
+               const index = this.list.findIndex(function(item,i , arr){
+                   return item.id = id
+               })
+               this.list.splice(index,1)
+           },
+           serchByName(){
+                return this.list.filter(item => item.name.includes(this.keywords))
+           }
+       }
+    })
+    </script>
+</body>
+
+</html>

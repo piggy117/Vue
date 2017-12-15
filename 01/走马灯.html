@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="animate">
+        <input type="button" value="start" @click="start">
+        <input type="button" value="stop" @click="stop">
+        <hr>
+        <h3>{{msg}}</h3>
+    </div>
+    <script>
+    // 创建一个vue对象
+    var vm =new Vue({
+        el:"#animate",
+        data:{
+            msg:"谁还不是小公主咋滴...",
+            interval :null
+        },
+        methods:{
+            start(){
+                if(this.interval !== null) 
+                return 
+                this.interval = setInterval(()=> {
+                const header = this.msg.substring(0,1);
+                const main = this.msg.substring(1);
+                this.msg = main + header
+                },500)
+            },
+            stop(){
+                clearInterval(this.interval)
+                this.interval = null
+            }
+        }
+    })
+    </script>
+</body>
+</html>

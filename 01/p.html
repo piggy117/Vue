@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <style>
+    /* [v-cloak]{
+        display:none;
+    } */
+    .red{
+        color:aqua;
+    }
+    .thin{
+        font-weight:normal;
+    }
+    .italic{
+        font-style:italic;
+    }
+    .small{
+        font-size:60px;
+    }
+    </style>
+</head>
+<body>
+    <!-- <input type="button" value="按钮" v-bind:title="btnTitle" :id="customIdName"> -->
+    <!-- v-bind:可以为元素的属性绑定一些数据 
+    -->
+    <!-- <input type="button" value="按钮" :title="btnTitle" :id="customIdName + '这是添加的内容'"> -->
+    <div id="change">
+        <!-- <h3 :class="{small:issmall,italic:isitalic}">{{msg}}</h3> -->
+        <!-- <h2 :style="[style1]">{{msg}}</h2> -->
+        <ul>
+            <!-- <li v-for="(item,i) in list">{{ i }}==========={{ item }}</li> -->
+            <li v-for="(item,i) in list">{{ i }}====={{ item.name }}====={{item.id}}</li>
+        </ul>
+    </div>
+    <script>
+    // 创建一个Vue
+    var vm = new Vue({
+        el:"#change",
+        data:{
+            // msg:"沿途经过的从前，还来不及再重演",
+            // style1:{color:'aqua','font-size':'40px'}
+            // list:['1','2','2','4']
+            list:[
+                {id:1,name:'hjk'},
+                {id:2,name:'ghgi'},
+                {id:3,name:'yoi'},
+                {id:4,name:'iuhgiu'}
+            ]
+        }
+    })
+    </script>
+</body>
+</html>
