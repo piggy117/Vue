@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <style>
+        .aqua {
+            color: rgb(0, 250, 250);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="change">
+        <h3 :class="['aqua']">{{ msg | strFormat }}</h3>
+    </div>
+    <div id="change1">
+        <h3 :class="['aqua']">{{ msg | strFormat | add }}</h3>
+    </div>
+    <script>
+        Vue.filter('strFormat', function (data, str = "live") {
+            return data.replace(/生活/g, str)
+        })
+        var vm = new Vue({
+            el: "#change",
+            data: {
+                msg: '我过我要的生活，不是生活过我就好',
+            },
+            methods: {}
+        })
+
+
+        var vm1 = new Vue({
+            el: '#change1',
+            data: {
+                msg: '我过我要的生活，不是生活过我就好',
+            },
+            methods: {},
+            filters: {
+                add(data) {
+                    return data.replace(/我/g,'ni')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

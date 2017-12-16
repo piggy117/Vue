@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <style>
+    .aqua{
+        color:aqua;
+    }
+    </style>
+</head>
+<body>
+    <div id="change">
+        <h3 :class="['aqua']">{{msg | strFormat}}</h3>
+        <hr>
+               
+    </div>
+    <div id="changes">
+        <h1 :class="['aqua']">{{msg | strFormat | addStr | strFormate}}</h1> 
+    </div>
+    <script>
+        // 创建一个 全局的过滤器
+        Vue.filter('strFormat',function(data,str="你"){
+            return data.replace(/我/g,str)
+        })
+    var vm = new Vue({
+        el:"#change",
+        data:{
+            msg:'我过我要的生活，不是生活过我就好',
+        },
+        methods:{}
+    });
+
+    Vue.filter('strFormat',function(data,str='live'){
+        return data.replace(/生活/g,str)
+    })
+
+
+    var vm1 = new Vue({
+        el:"#changes",
+        data:{
+            msg:"我过我要的生活，不是生活过我就好",
+        },
+        methods:{},
+        filters:{
+            // 当前实例私有的过滤器
+            addStr(data){
+                return data + '~~~~~~~~~~~~'
+            },
+            // 如果全局过滤器和私有过滤器崇明了，那么以就近原则为主
+            strFormate(data){
+                return data + '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊'
+            }
+        }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <!-- vue-resource只能在Vue的后面导入 -->
+    <script src="js/vue-resource-1.3.4.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="Get请求" @click="getInfo">
+        <input type="button" value="Post请求" @click="postInfo">
+        <input type="button" value="JSONP请求" @click="jsonpInfo">
+    </div>
+    <script>
+    var vm = new Vue({
+        el:"#app",
+        data:{},
+        methods:{
+            // async getInfo(){
+            //     const { body } = await this.$http.get('http://39.106.32.91:3000/api/getlunbo')
+            //     console.log(body)
+            // },
+
+            // async postInfo(){
+            //     const { body } = await this.$http.post('http://39.106.32.91:3000/api/post',{name:'gaopopo',age:12,gender:'yao'})
+            //     console.log(body)
+            // },
+
+            // async jsonpInfo(){
+            //     const { body } = await this.$http.jsonp('http://39.106.32.91:3000/api/jsonp')
+            //     console.log(body)
+            // }
+            async getInfo(){
+                const { body } = await this.$http.get('http://39.106.32.91:3000/api/getlunbo')
+                console.log(body)
+            },
+
+            async postInfo(){
+                const { body } = await this.$http.post('http://39.106.32.91:3000/api/post',{name:'gaopopo',age:12,gender:'nan'})
+                console.log(body)
+            },
+
+            async jsonpInfo(){
+                const { body } = await this.$http.jsonp('http://39.106.32.91:3000/api/jsonp')
+                console.log(body)
+            }
+        }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .aqua{
+        font-size:40px;
+        font-style:italic;
+    }
+
+    .yellow{
+        color:aqua;
+        height: 20px;
+        margin:40px 0;
+    }
+    </style>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="click">
+        <ul>
+            <li @click="click(index)" v-for="(item,index) in list" :key="item.id" :class="['yellow',{aqua:index == selected ? true : false }]">
+                {{item.id}} ========= {{item.name}}
+            </li>
+        </ul>
+    </div>
+    <script>
+    var vm = new Vue({
+        el:"#click",
+        data:{
+            selected:0,
+            list:[
+                {id:'1',name:'00'},
+                {id:'2',name:'99'},
+                {id:'3',name:'88'},
+                {id:'4',name:'77'},
+                {id:'5',name:'66'},
+                {id:'6',name:'55'}
+            ]
+        },
+        methods:{
+            click(index){
+                this.selected = index
+            }
+        }
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- <h3 :class="['aqua']">{{ msg | strFormat | add }}</h3>
+        <h3 :class="['aqua']">{{ msg | strFormat | add }}</h3>
+        <h3 :calss="['aqua']">{{ msg | strFormat | add }}</h3>
+        <h3 :class="['aqua']">{{ msg | strFormat | add }}</h3>
+        <h3 :calss="['aqua']">{{ msg | strFormat | add }}</h3>
+        <li v-for="(item, index) in list" :key="item.id" :class="['normal', { active: index == selectedIndex ? true : false }]" @click="changeIndex(index)">{{ item.id }} ------ {{ item.name }}</li>
+        <li v-for="(item ,i ) in list " :key="item.id" :class="['normal',{active: index == seleIndex ? true : false }]" @click="change(index)"> {{item.id}}======{{item.name}}</li>
+        <li v-for="(item,index) in list " :key="item.id" :class="['normal',{active: index == selectIndex ? true : false}]" @click="change(index)">{{item.id}}  =====  {{item.name}}</li>
+        <li v-for="(item,index) in list" :key="item.id" :class="['normal',{active:index==selectedIndex? true:false}]" @click="change(index"> {{item.id}} ===== {{item.name}}</li> -->
+    <div id="change">
+        <p v-bold="900">{{ msg }}</p>
+        <p>{{ msg }}</p>
+        <p v-italic>{{ msg }}</p>
+        <p v-color="'blue'">{{ msg }}</p>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: "#change",
+        data: {
+            msg: '吐小曹，小曹胡咧咧',
+        },
+        methods: {},
+        filters: {},
+        directives: {
+            // 自定义指令区域
+            bold: {
+                bind(el, binding) {
+                    el.style.fontWeight = binding.value
+                },
+                inserted(el){}
+            },
+            italic:function(el,binding){
+                // 用到了指令的函数简写形式，如果指令给定的是function，泽等同于把这个function中的代码，分别定义到了bind和update中去
+                el.style.fontStyle = 'italic'
+            }
+        }
+    })
+// Vue.filter('strFormat', function (data, str = "live") {
+//         return data.replace(/生活/g, str)
+//     })
+
+//     Vue.filter('strFormat',function(data,str="ni"){
+//         return data.replace(/生活/g,str)
+//     })
+//     Vue.filter('strFormat',function(data,str="ni"){
+//         return data.replace(/生活/g,str)
+//     })
+// var vm1 = new Vue({
+//     el: '#change1',
+//     data: {
+//         msg: '我过我要的生活，不是生活过我就好',
+//     },
+//     methods: {},
+//     filters: {
+//         add(data) {
+//             return data.replace(/我/g,'ni')
+//         }
+//     }
+// })
+
+// var vm = new Vue({
+//     el:'',
+//     data:{},
+//     methods:{},
+//     filter:{
+//         add(data){
+//             console.log(data)
+//         }
+//     }
+// })
+
+// var vm = new Vue({
+//     el:'',
+//     data:{},
+//     methods:{},
+//     filter:{
+//         add(){
+//             console.log(1)
+//         }
+//     }
+// })
+// // 自定义获取焦点v-focus指令
+// // 注意：Vue自定义指令的名称中，不需要写v-前缀，在调用自定义指令的时候，必须加v-前缀
+// Vue.directive('focus',{
+//     // 列表参数中，第一个参数，永远是el，表示被绑定指令的那个元素
+//             // 今后在自定义指令的时候，如需要操作元素的样式，最好写到bind中去
+//     bind:function(el){
+//         // 当指令绑定到的元素，被VUE实例解析的时候，就会立即执行bind函数
+//         // console.log(el)
+//         // e.focus如果想要让文本获取焦点，那么，文本框必须先插入到文档中才能生效
+//         el.style.color='red'
+
+//     },
+//             // 今后在自定义指令的时候，如需要操作元素的JS行为了，最好写到inserted中去
+//     inserted:function(el){
+//         // 调用时机：当指令绑定到的元素，被插入到文档的父节点的时候，调用inserted函数
+//         el.focus()
+//     },
+//     update:function(el){
+//         // 
+//     }
+// })
+//     var vm = new Vue({
+//         filters:{
+//             addStr:function (data){
+//                 return data + '~~~~'
+//                 // 当前实例私有的过滤器
+//             }
+//         }
+//     })
+</script>
+
+</html>

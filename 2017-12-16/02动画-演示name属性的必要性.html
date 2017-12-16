@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to,
+        .fade-enter,
+        .fade-leave-to{
+            opacity:0;
+            transform:translateX(500px)
+        }
+        .v-enter-active,
+        .v-leave-active,
+        .fade-leave-active,
+        .fade-enter-active{
+            transition:all 1s ease
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="toggle=!toggle">
+        <transition>
+            <h3 v-show="toggle">12345</h3>
+        </transition>
+        <hr>
+        <input type="button" value="toggle" @click="toggle2=!toggle2">
+        <transition name="fade">
+            <h3 v-show="toggle2">1234567890</h3>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                toggle:false,
+                toggle2:false
+            },
+            methods:{
+            }
+        })
+    </script>
+</body>
+
+</html>
