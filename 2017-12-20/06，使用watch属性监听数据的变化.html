@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue-2.5.9.js"></script>
+    <script src="js/vue-router-v3.0.1.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        firstname:
+        <input type="text" v-model="firstname"> + lastname:
+        <input type="text" v-model="lastname"> + fullname:
+        <input type="text" v-model="fullname">
+    </div>
+
+
+    <script>
+    // 创建Vue实例，
+    // 使用watch。可以去监听虚拟的数据，比如监听URL地址的改变
+    // 适合监听单个的虚拟数据的变化，然后做对应的操作
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            firstname:'',
+            lastname:'',
+            fullname:''
+        },
+        methods:{},
+        watch:{
+            // 表示监听指定数据的改变
+            // '键是要监听的数据'：数据变化的时候处理函数
+            'firstname':function(newval,oldval){
+                this.fullname = newval + '-' + this.lastname
+            },
+            'lastname':function(newval,oldval){
+                this.fullname = this.firstname + '-' + newval
+            }
+        }
+    })
+    </script>
+</body>
+</html>

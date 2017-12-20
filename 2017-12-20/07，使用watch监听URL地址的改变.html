@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue-2.5.9.js"></script>
+    <script src="js/vue-router-v3.0.1.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/login">登录</router-link>
+        <router-link to="/reg">注册</router-link>
+
+        <router-view></router-view>
+
+        <h3>{{ msg }}</h3>
+    </div>
+
+    <script>
+    const login={
+        template:`<h1>登录组件</h1>`
+    }
+
+    const reg={
+        template:`<h2>注册组件</h2>`
+    }
+
+    const router = new VueRouter({
+        routes:[
+            {path:'/login',component:login},
+            {path:'/reg',component:reg}
+        ]
+    })
+
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            msg:'你说，嘿，爱着我的小伙子~~啊！'
+        },
+        methods:{},
+        created(){
+            // 这个created生命周期，在页面刚被打开的时候会执行，同时，如果页面被耍刺挠了，也会执行
+            // 刷新的时候，不会回到初始页面，不会初始化
+            const path = this.$route.path
+            if(path === '/login'){
+                this.msg = '你我山前没相见'
+            }else if(path ==='/reg'){
+                this.msg = '山后别相逢'
+            }
+        },
+        router,
+        watch:{
+            // 在watch中，可以监听当前VM实例上所有的属性变化，页面的刷新，不会触发$router.path的改变事件
+            '$route.path'(newval){
+                if(newval === '/login'){
+                    this.msg = '欢迎进入登录页面'
+                }else if(newval === '/reg'){
+                    this.msg = '欢迎进入注册页面'
+                }
+            }
+        }
+    })
+    </script>
+</body>
+</html>

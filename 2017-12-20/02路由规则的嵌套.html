@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue-2.5.9.js"></script>
+    <script src="js/vue-router-v3.0.1.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/account">account</router-link>
+        <router-link to="/newslist">新闻列表</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+    const account = {
+        template:`<div>
+        <h2>account组件展示</h2>
+        <router-link to="/account/login">登录</router-link>
+        
+        <router-link to="/account/reg">注册</router-link>
+        <router-view></router-view>
+        </div>`
+    }
+
+    const login={
+        template:`<div>
+        <h1>登录组件</h1>
+        </div>`
+    }
+
+    const reg ={
+        template:`<div>
+        <h3>注册组件</h3>
+        </div>`
+    }
+
+    const newslist={
+        template:`<div>
+        <h4>新闻列表组件</h4>
+        </div>`
+    }
+
+    const router=new VueRouter({
+        routes:[
+            {path:'/account',component:account,children:[
+                {path:'login',component:login},
+                // account规则色子路由规则，注意：使用children属性创建的子路由规则，path前面不带    /
+                {path:'reg',component:reg}
+            ]},
+            
+            {path:'/newslist',component:newslist}
+        ]
+    })
+
+    var vm = new Vue({
+        el:"#app",
+        data:{},
+        methods:{},
+        router:router
+    })
+    </script>
+</body>
+</html>

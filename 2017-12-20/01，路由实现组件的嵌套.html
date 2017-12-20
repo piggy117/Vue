@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/vue-2.5.9.js"></script>
+    <script src="js/vue-router-v3.0.1.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/account">account</router-link>
+
+        <router-link to="/newslist">新闻</router-link>
+
+        <router-view></router-view>
+    </div>
+
+    <script>
+    const login = {
+        template:`<div>
+        <h2>登录组件</h2>
+        </div>`
+    }
+
+
+    const account = {
+        template:`<div>
+        <h3>account组件</h3>
+        <router-link to="/account/login" >login<router-link>
+
+        <router-view></router-view>
+        </div>`
+    }
+
+    const newslist={
+        template:`<div>
+        <h1>新闻列表组件</h1>
+        </div>`
+    }
+
+    const router = new VueRouter({
+        routes:[
+            {path:'/account/login',component:login},
+            {path:'/account',component:account},
+            {path:'/newslist',component:newslist}
+        ]
+    })
+    // console.log(router)
+    // console.log(router.routes)
+
+    var vm = new Vue({
+        el:"#app",
+        data:{},
+        methods:{},
+        router:router
+    })
+    </script>
+</body>
+
+</html>
